@@ -1,0 +1,182 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  text-align: left;
+}
+
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: -0.6px;
+    margin: 0;
+  }
+}
+
+.dashboard__subtitle {
+  font-size: 14px;
+}
+
+/* ---------- Search ---------- */
+
+.search {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 12px 0;
+  background: var(--bg);
+}
+
+.search__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.search__input {
+  font: inherit;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+  }
+}
+
+.search__latency {
+  font-family: var(--mono);
+  font-size: 13px;
+  white-space: nowrap;
+
+  span {
+    display: inline-block;
+    min-width: 64px;
+    text-align: right;
+    font-weight: 700;
+  }
+  span[data-level='good'] { color: #16a34a; }
+  span[data-level='warn'] { color: #d97706; }
+  span[data-level='bad']  { color: #dc2626; }
+}
+
+/* ---------- List ---------- */
+
+.list-shell {
+  transition: opacity 0.15s ease-out;
+}
+
+/* FIX 4 (part d): stale visual state.
+   The transition-delay means quick, fast-settling updates never flicker —
+   the dimming only kicks in if the background render takes longer than ~200ms. */
+/*
+.list-shell--stale {
+  opacity: 0.45;
+  transition: opacity 0.2s 0.2s linear;
+  pointer-events: none;
+}
+*/
+
+.badge {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.badge--updating {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+}
+
+.list {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.list__header {
+  font-size: 14px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--code-bg);
+}
+
+.list__body {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 56px 1.1fr 1.8fr 1.1fr 0.8fr 80px 90px 1.2fr;
+  gap: 12px;
+  align-items: center;
+  padding: 6px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+
+  &:nth-child(even) {
+    background: var(--social-bg);
+  }
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  mark {
+    background: var(--accent-bg);
+    color: var(--accent);
+    border-radius: 2px;
+  }
+}
+
+.row__id,
+.row__revenue {
+  font-family: var(--mono);
+}
+
+.row__name {
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.row__revenue {
+  text-align: right;
+}
+
+.row__status {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.status--active  { color: #16a34a; }
+.status--pending { color: #d97706; }
+.status--churned { color: #dc2626; }
+.status--trial   { color: #2563eb; }
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 1px 6px;
+  margin-right: 4px;
+  border-radius: 4px;
+  background: var(--code-bg);
+}
